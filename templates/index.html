@@ -24,7 +24,7 @@
     })
 
     function getData() {
-        $.get('http://192.168.1.6:5000/api', function (e) {
+        $.get('http://172.25.0.1:5000/api', function (e) {
             var html = ''
             for (var i = 0; i < e.data.length; i++) {
                 html += '<tr>'

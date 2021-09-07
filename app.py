@@ -12,8 +12,8 @@ def index():
 def api():
     conn = pymysql.connect(host="localhost",
         port=3306,
-        user="root",
-        passwd="root",
+        user="ping",
+        passwd="bLSbNxbWJAGjjba5",
         db="ping",
         charset='utf8')
     cur = conn.cursor()

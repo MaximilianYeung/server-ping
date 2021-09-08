@@ -31,10 +31,10 @@
                 html += '<td>' + e.data[i][0] + '</td>'
                 html += '<td>' + e.data[i][1] + '</td>'
                 html += '<td>' + e.data[i][2] + '</td>'
-                if (e.data[i][3] == '离线') {
-                    html += '<td style="color: red">' + e.data[i][3] + '</td>'
+                if (e.data[i][3] == '0') {
+                    html += '<td style="color: red">离线</td>'
                 } else {
-                    html += '<td style="color: green">' + e.data[i][3] + '</td>'
+                    html += '<td style="color: green">在线</td>'
                 }
                 html += '</tr>'
             }

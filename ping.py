@@ -29,9 +29,9 @@ def get_loan_number(file):
     for i in range(0,len(first)-1):
          tmp = first[i]
          ip = tmp[:tmp.index('is')-1]
-         status = '在线'
+         status = '1'
          if 'unreachable' in tmp:
-             status = '离线'
+             status = '0'
          cursor.execute('update ip_table set status="%s" where ipaddress="%s"'%(status,ip))
     connect.commit()
     content.close()

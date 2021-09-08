@@ -3,13 +3,29 @@
 {% block title %}服务器监控平台{% endblock %}
  
 {% block page_content %}
+<div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">状态
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+            <a role="menuitem" onclick='setStatus("")' href="javascript:;">全部</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" onclick='setStatus(1)' href="javascript:;">在线</a>
+        </li>
+        <li role="presentation">
+            <a role="menuitem" onclick='setStatus(0)' href="javascript:;">离线</a>
+        </li>
+    </ul>
+</div>
     <table class="table table-bordered">
     <thead>
         <tr>
-            <th>序号</th>
+            <th>分组</th>
             <th>IP地址</th>
             <th>服务</th>
-            <th>是否在线</th>
+            <th>状态</th>
         </tr>
     </thead>
     <tbody id='result'></tbody>
@@ -17,18 +33,24 @@
     	
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
+    var status = ""
     $(function () {
         getData()
 
         setInterval("getData()", 3000)
     })
 
+    function setStatus(sta) {
+        status = sta
+        getData()
+    }
+
     function getData() {
-        $.get('http://172.25.0.1:5000/api', function (e) {
+        $.get('/api?status=' + status, function (e) {
             var html = ''
             for (var i = 0; i < e.data.length; i++) {
                 html += '<tr>'
-                html += '<td>' + e.data[i][0] + '</td>'
+                html += '<td>' + e.data[i][4] + '</td>'
                 html += '<td>' + e.data[i][1] + '</td>'
                 html += '<td>' + e.data[i][2] + '</td>'
                 if (e.data[i][3] == '0') {
